@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	bot, err := tgbotapi.NewBotAPI("<YOUR_BOT_TOKEN>")
+	bot, err := tgbotapi.NewBotAPI("6139392315:AAF33SrBh45mpoaPAZ0AHY-6Bd9Kz_lO4iE")
 	if err != nil {
 		log.Panic(err)
 	}
@@ -19,7 +19,7 @@ func main() {
 	u := tgbotapi.NewUpdate(0)
 	u.Timeout = 60
 
-	updates, err := bot.GetUpdatesChan(u)
+	updates, _ := bot.GetUpdatesChan(u)
 
 	for update := range updates {
 		if update.Message == nil {
@@ -30,7 +30,9 @@ func main() {
 
 		msg := tgbotapi.NewMessage(update.Message.Chat.ID, update.Message.Text)
 		msg.ReplyToMessageID = update.Message.MessageID
-
-		bot.Send(msg)
+		_, err := bot.Send(msg)
+		if err != nil {
+			log.Printf("Error sending message: %s", err)
+		}
 	}
 }
