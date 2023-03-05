@@ -1,4 +1,4 @@
-# echobot
+## A Telegram bot send your message back to you. Just for fun!
 
  This bot is a simple echo bot, which means that it listens for incoming messages and then echoes them back to the user who sent the message. When you send a message to the bot, it will reply with the same message.
 
